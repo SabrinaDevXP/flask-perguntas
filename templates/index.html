@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdade ou Verdade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 50px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            background-color: #2b48ac;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #1a2d7a;
+        }
+        #pergunta {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verdade ou Verdade</h1>
+    <div class="container">
+        <p id="pergunta">Clique para sortear uma pergunta</p>
+        <button onclick="sortearPergunta()">Sortear Pergunta</button>
+        <button onclick="voltarPergunta()">Voltar</button>
+    </div>
+    <script>
+        async function sortearPergunta() {
+            const response = await fetch('/sortear');
+            const data = await response.json();
+            document.getElementById('pergunta').innerText = data.pergunta;
+        }
+        async function voltarPergunta() {
+            const response = await fetch('/voltar');
+            const data = await response.json();
+            document.getElementById('pergunta').innerText = data.pergunta;
+        }
+    </script>
+</body>
+</html>
